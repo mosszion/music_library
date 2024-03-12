@@ -172,30 +172,35 @@ const library = {
 
      //Testing each of the functions
 
-    // const result1 = printPlaylists();
-    // const result2 = printTracks();
-    const result3 = printPlaylist("p01") //should print playlist p01
-    const result4 = addTrackToPlaylist("t03","p01")
-   
-   
     
-    // assertArraysEqual(result1, [ 'p01: Coding Music - 2 tracks', 'p02: Other Playlist - 1 tracks' ]);
-    // assertArraysEqual(result2, [
-    //   't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
-    //   't02: Model View Controller by James Dempsey (WWDC 2003)',
-    //   't03: Four Thirty-Three by John Cage (Woodstock 1952)'
-    // ]);
-    assertArraysEqual(result3,[
-      'p01: Coding Music - 2 tracks',
-      't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
-      't02: Model View Controller by James Dempsey (WWDC 2003)'
-    ]);  // Test Passed
+    
+    const result4 = addTrackToPlaylist("t03","p01")
+    const result3 = printPlaylist("p01") //should print playlist p01
+    const result1 = printPlaylists();
+    const result2 = printTracks();
+   
+   
     assertArraysEqual(result4,[
       'p01: Coding Music - 3 tracks',
       't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
       't02: Model View Controller by James Dempsey (WWDC 2003)',
       't03: Four Thirty-Three by John Cage (Woodstock 1952)'
     ]); // Test Passed
+    assertArraysEqual(result3,[
+      'p01: Coding Music - 3 tracks',
+      't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
+      't02: Model View Controller by James Dempsey (WWDC 2003)',
+      't03: Four Thirty-Three by John Cage (Woodstock 1952)'
+    ]);  // Test Passed
+    assertArraysEqual(result2, [
+      't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
+      't02: Model View Controller by James Dempsey (WWDC 2003)',
+      't03: Four Thirty-Three by John Cage (Woodstock 1952)'
+    ]);
+    assertArraysEqual(result1, [ 'p01: Coding Music - 3 tracks', 'p02: Other Playlist - 1 tracks' ]);
+    
+   
+    
      
     
 
