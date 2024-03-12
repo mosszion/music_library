@@ -61,13 +61,14 @@ const library = {
   addTrackToPlaylist: function(trackId, playlistId) {
                       const keyOfPList = Object.keys(this.playlists)
                       for (let plist of keyOfPList) {
-                        if(plist === playListId) {
+                        if(plist === playlistId) {
                           const selectPlaylist = this.playlists[plist]
                           selectPlaylist.tracks.push(trackId);
       
                         
                         }
                       }
+                      return this.printPlaylist(playlistId);
                },
 
   generateUid: function() {
