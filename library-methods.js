@@ -48,7 +48,7 @@ const library = {
                  for (let plist of keysList) {
                  if(plist === playlistId) {
                  const inPlaylst = this.playlists[plist];
-                 console.log (`${inPlaylst.id}: ${inPlaylst.name} - ${inPlaylst.tracks.length} tracks`);
+                 trackListInfo.push(`${inPlaylst.id}: ${inPlaylst.name} - ${inPlaylst.tracks.length} tracks`);
                    for (let trks of inPlaylst.tracks) {
                      const inTracks = this.tracks[trks]
                      trackListInfo.push(`${inTracks.id}: ${inTracks.name} by ${inTracks.artist} (${inTracks.album})`); 
@@ -125,10 +125,10 @@ const eqArrays = function(firstArr, secondArr) {
 
 
 
-const result4 = library.addTrackToPlaylist("t03","p01")
+const result4 = library.addTrackToPlaylist("t03","p01") //should add t03 in playlist p01
 const result3 = library.printPlaylist("p01") //should print playlist p01
 
-const result2 = library.printTracks();
+const result2 = library.printTracks(); //should print all 
 const result1 = library.printPlaylists();
 
 
