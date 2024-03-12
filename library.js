@@ -77,7 +77,7 @@ const library = {
        for (let plist of keysList) {
          if(plist === playlistId) {
            const inPlaylst = library.playlists[plist];
-           console.log (`${inPlaylst.id}: ${inPlaylst.name} - ${inPlaylst.tracks.length} tracks`);
+           tracksInfo.push(`${inPlaylst.id}: ${inPlaylst.name} - ${inPlaylst.tracks.length} tracks`);
           for (let trks of inPlaylst.tracks) {
                const inTracks = library.tracks[trks]
                tracksInfo.push(`${inTracks.id}: ${inTracks.name} by ${inTracks.artist} (${inTracks.album})`)
@@ -97,9 +97,10 @@ const library = {
            const selectPlaylist = library.playlists[plist]
            selectPlaylist.tracks.push(trackId);
          
-          return  selectPlaylist.tracks;
+          
          }
         }
+        return printPlaylist(playlistId);
      
      }
      
@@ -115,7 +116,7 @@ const library = {
      // adds a track to the library
      const addTrack = function(name, artist, album) {
        let idUsed = generateUid();
-       this.tracks.idUsed = {
+       library.tracks.idUsed = {
          id :  idUsed,
          name : name,
          artist : artist,
@@ -130,24 +131,72 @@ const library = {
      // adds a playlist to the library
      const addPlaylist = function(name) {
        let playlistId = generateUid();
-       this.playlists.playlistId= {
+       library.playlists.playlistId= {
          id: playlistId,
          name: name,
          tracks: []
        }
                                  
-       
+       return printPlaylists();
      
      }
      
+
+
+     // Testing using assertArrayEqual 
+
      
-     // STRETCH:
-     // given a query string string, prints a list of tracks
-     // where the name, artist or album contains the query string (case insensitive)
-     // tip: use "string".search("tri") 
-     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-     const printSearchResults = function(query) {
-     
+     const eqArrays = function(firstArr, secondArr) {
+      if(firstArr.length === secondArr.length){
+       let isEqual = true;
+       for(let i = 0; i < firstArr.length; i++){
+        
+         if(firstArr[i] !== secondArr[i]){
+           isEqual = false;
+         }
+       }
+       return isEqual;
+      } else {
+       return false;
+      }
+     };
+    
+     const assertArraysEqual = function(arr1, arr2) {  //intialize an assertArraysEqual fn with two array arguments
+      let result = eqArrays(arr1, arr2);
+      if(result) {     // check if arr1 is equal to arr2
+        console.log(`✅✅✅ Test Passed: ${arr1} === ${arr2} : Arrays are equal.`); // if equal return this message
+      } else {
+        console.log(`❌❌❌ Test Failed: ${arr1} !== ${arr2} :Arrays are not equal.`); // else return this message
+      }
      }
+
+     //Testing each of the functions
+
+    const result1 = printPlaylists();
+    const result2 = printTracks();
+    // const result3 = printPlaylist("p01")
+    // const result4 = addTrackToPlaylist("t03","p01")
+   
+   
+    
+    assertArraysEqual(result1, [ 'p01: Coding Music - 2 tracks', 'p02: Other Playlist - 1 tracks' ]);
+    assertArraysEqual(result2, [
+      't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
+      't02: Model View Controller by James Dempsey (WWDC 2003)',
+      't03: Four Thirty-Three by John Cage (Woodstock 1952)'
+    ]);
+    // assertArraysEqual(result3,[
+    //   'p01: Coding Music - 2 tracks',
+    //   't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
+    //   't02: Model View Controller by James Dempsey (WWDC 2003)'
+    // ]);
+    // assertArraysEqual(result4,[
+    //   'p01: Coding Music - 3 tracks',
+    //   't01: Code Monkey by Jonathan Coulton (Thing a Week Three)',
+    //   't02: Model View Controller by James Dempsey (WWDC 2003)',
+    //   't03: Four Thirty-Three by John Cage (Woodstock 1952)'
+    // ]);
+     
+    
 
     
