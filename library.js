@@ -33,14 +33,16 @@ const library = {
      const printPlaylists = function() {
       
        const keyOfPList = Object.keys(library.playlists)
+       let plistInfo = [];
        
        for (let plistKey of keyOfPList) {
          const plist = library.playlists[plistKey];
-         console.log(`${plist.id}: ${plist.name} - ${plist.tracks.length} tracks`)
-         
+          plistInfo.push(`${plist.id}: ${plist.name} - ${plist.tracks.length} tracks`) ;
+       }
+       return plistInfo; 
         
      
-       }
+       
        
      }
      
@@ -53,12 +55,15 @@ const library = {
      // t03: Four Thirty-Three by John Cage (Woodstock 1952)
      const printTracks = function() {
        const keyOfTracks = Object.keys(library.tracks)
+       const trackListInfo = [];
        for( let tracklst of keyOfTracks){
          const unitTrack = library.tracks[tracklst];
-         console.log(`${unitTrack.id}: ${unitTrack.name} by ${unitTrack.artist} (${unitTrack.album})`);
+         trackListInfo.push(`${unitTrack.id}: ${unitTrack.name} by ${unitTrack.artist} (${unitTrack.album})`) ;
      
        }
+       return trackListInfo;
      };
+     
      
      
      // prints a list of tracks for a given playlist, using the following format:
@@ -67,6 +72,7 @@ const library = {
      // t02: Model View Controller by James Dempsey (WWDC 2003)
      const printPlaylist = function (playlistId) {
        let keysList = Object.keys(library.playlists);
+       const tracksInfo = [];
      
        for (let plist of keysList) {
          if(plist === playlistId) {
@@ -74,18 +80,20 @@ const library = {
            console.log (`${inPlaylst.id}: ${inPlaylst.name} - ${inPlaylst.tracks.length} tracks`);
           for (let trks of inPlaylst.tracks) {
                const inTracks = library.tracks[trks]
-               return `${inTracks.id}: ${inTracks.name} by ${inTracks.artist} (${inTracks.album})`
+               tracksInfo.push(`${inTracks.id}: ${inTracks.name} by ${inTracks.artist} (${inTracks.album})`)
               }
          
          }
        }
+       return tracksInfo;
      }
+     
      
      // adds an existing track to an existing playlist
      const addTrackToPlaylist = function(trackId, playlistId) {
        const keyOfPList = Object.keys(library.playlists)
         for (let plist of keyOfPList) {
-         if(plist === playListId) {
+         if(plist === playlistId) {
            const selectPlaylist = library.playlists[plist]
            selectPlaylist.tracks.push(trackId);
          
@@ -94,6 +102,7 @@ const library = {
         }
      
      }
+     
      
      
      // generates a unique id
@@ -140,3 +149,5 @@ const library = {
      const printSearchResults = function(query) {
      
      }
+
+    
